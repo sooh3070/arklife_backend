@@ -35,7 +35,7 @@ def fetch_items_by_category(category_code):
 def update_data_cache():
     while True:
         # 업데이트할 카테고리 코드 리스트
-        category_codes = [90200, 90300, 90400, 90500, 90700]
+        category_codes = [90200, 90300, 90400, 90500, 90600, 90700]
         for code in category_codes:
             data_cache[code] = fetch_items_by_category(code)
         print("Data cache updated.")
