@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import os
 
 # 캐싱할 데이터 변수
 crystal_cache = None
@@ -13,12 +14,15 @@ crystal_cache = None
 # 크리스탈 시세를 가져오는 함수
 def fetch_crystal_data():
     global crystal_cache
+    driver = None  # 초기화
     try:
         # Selenium WebDriver 설정
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
+
+        driver_path = os.path.expanduser("~/.wdm")
         
         driver = webdriver.Chrome(
             service=Service(ChromeDriverManager(driver_version="130.0.6723.117").install()),
@@ -42,8 +46,7 @@ def fetch_crystal_data():
         print(f"Failed to fetch crystal data: {e}")
         
     finally:
-        # driver가 초기화된 경우에만 quit 호출
-        if driver is not None:
+        if driver:  # 드라이버가 초기화된 경우에만 종료
             driver.quit()
 
 # 주기적으로 크리스탈 데이터를 업데이트하는 함수
