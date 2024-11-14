@@ -8,6 +8,10 @@ from scraper import get_crystal_cache  #스크래퍼 크리스탈 불러오기
 
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the ArkLife API"}
+
 
 @app.get("/items/{category_code}")
 async def get_items_by_category(category_code: int):
