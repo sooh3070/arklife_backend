@@ -4,7 +4,10 @@ from data_cache import data_cache
 from fastapi.middleware.cors import CORSMiddleware
 from scraper import get_crystal_cache  #스크래퍼 크리스탈 불러오기
 
+
+
 app = FastAPI()
+
 
 @app.get("/items/{category_code}")
 async def get_items_by_category(category_code: int):
