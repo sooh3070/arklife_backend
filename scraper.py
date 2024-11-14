@@ -1,13 +1,8 @@
-# crystal_data_cache.py
 import time
 from threading import Thread
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-
-
-from webdriver_manager.chrome import ChromeDriverManager
 
 # 캐싱할 데이터 변수
 crystal_cache = None
@@ -23,24 +18,22 @@ def fetch_crystal_data():
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
-        
+        # ChromeDriver 경로
         driver_path = "./bin/chromedriver"
-        print(f"Creating directory at {driver_path}")
-        print(f"Directory {driver_path} created successfully")
 
-        
+        # 직접 다운로드한 ChromeDriver 경로를 사용
         driver = webdriver.Chrome(
-            service=Service(ChromeDriverManager(driver_version="130.0.6723.117").install()),
+            executable_path=driver_path,  # 명시적으로 경로 전달
             options=chrome_options
         )
-        
+
         # 목표 URL에 접속
         url = 'https://loatool.taeu.kr/lospi/'
         driver.get(url)
-        
+
         # 페이지 로드 대기
         time.sleep(3)
-        
+
         # 첫 번째 값 추출
         elements = driver.find_elements(By.CLASS_NAME, "text-h6")
         strings = [element.text for element in elements]
@@ -49,7 +42,7 @@ def fetch_crystal_data():
 
     except Exception as e:
         print(f"Failed to fetch crystal data: {e}")
-        
+
     finally:
         if driver:  # 드라이버가 초기화된 경우에만 종료
             driver.quit()
