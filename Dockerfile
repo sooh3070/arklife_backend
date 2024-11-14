@@ -10,8 +10,10 @@ RUN apt-get update && apt-get install -y \
     libxi6 libxrandr2 libxss1 libatk-bridge2.0-0 libgtk-3-0 \
     chromium chromium-driver && apt-get clean
 
-# Ensure /app/.wdm exists and is writable
-RUN mkdir -p /app/.wdm && chmod -R 777 /app/.wdm
+# ChromeDriver 실행 파일 복사
+COPY ./bin/chromedriver /app/bin/chromedriver
+RUN chmod +x /app/bin/chromedriver
+
 
 # Copy project files
 COPY . .
