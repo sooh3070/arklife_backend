@@ -5,6 +5,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.utils import set_driver_path
+
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 
@@ -22,7 +24,12 @@ def fetch_crystal_data():
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
+        os.environ['WD_MANAGER_PATH'] = '/app/.wdm'
+        os.environ['WDM_LOCAL'] = '1'  # 로컬 경로 사용
+        os.environ['WDM_LOG_LEVEL'] = '0'  # 로그를 최소화
+        os.environ['WDM_CACHE_DIR'] = '/app/.wdm'  # 캐시 디렉토리 변경
         os.environ['WDM_LOCAL'] = "/app/.wdm"
+        
         driver_path = "/app/.wdm"  # 애플리케이션 디렉토리로 변경
         print(f"Creating directory at {driver_path}")
         os.makedirs(driver_path, exist_ok=True)
