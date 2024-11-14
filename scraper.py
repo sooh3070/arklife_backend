@@ -22,8 +22,12 @@ def fetch_crystal_data():
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
+        os.environ['WDM_LOCAL'] = "/app/.wdm"
         driver_path = "/app/.wdm"  # 애플리케이션 디렉토리로 변경
+        print(f"Creating directory at {driver_path}")
         os.makedirs(driver_path, exist_ok=True)
+        print(f"Directory {driver_path} created successfully")
+
         
         driver = webdriver.Chrome(
             service=Service(ChromeDriverManager(driver_version="130.0.6723.117").install()),

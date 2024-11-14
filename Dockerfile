@@ -1,5 +1,8 @@
-# Base image
-FROM python:3.10-slim
+# Use full version Python image
+FROM python:3.10
+
+# Install docker CLI
+RUN apt-get update && apt-get install -y docker.io
 
 # Set the working directory
 WORKDIR /app
