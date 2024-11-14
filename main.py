@@ -31,7 +31,14 @@ async def get_crystal_price():
         raise HTTPException(status_code=503, detail="크리스탈 시세 데이터가 아직 준비되지 않았습니다.")
     return {"crystal_price": crystal_price}
 
+origins = [
+    "http://localhost:3000",  # 프론트엔드 주소
+    "http://arklife.store"
+    "http://43.203.231.113",  # 배포된 백엔드 주소
+]
+
 app.add_middleware(
+    
     CORSMiddleware,
     allow_origins=["*"],  # 필요한 도메인으로 제한하는 것이 더 안전합니다
     allow_credentials=True,
