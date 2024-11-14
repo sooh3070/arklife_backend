@@ -15,9 +15,11 @@ def fetch_crystal_data():
     try:
         # Selenium WebDriver 설정
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--headless")  # Headless 모드 실행
+        chrome_options.add_argument("--no-sandbox")  # 권한 문제 방지
+        chrome_options.add_argument("--disable-dev-shm-usage")  # /dev/shm 공간 부족 방지
+        chrome_options.add_argument("--disable-gpu")  # GPU 비활성화 (헤드리스 환경에서 필요)
+        chrome_options.add_argument("--remote-debugging-port=9222")  # 디버깅 포트 설정
 
         # ChromeDriver 경로
         driver_path = "./bin/chromedriver"

@@ -1,19 +1,28 @@
-# Use full version Python image
+# Dockerfile
 FROM python:3.10-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Install Chrome, ChromeDriver, and dependencies
+# Install system dependencies for Chrome and ChromeDriver
 RUN apt-get update && apt-get install -y \
-    libnss3 libx11-xcb1 libxcomposite1 libxcursor1 \
-    libxi6 libxrandr2 libxss1 libatk-bridge2.0-0 libgtk-3-0 \
-    chromium chromium-driver && apt-get clean
+    libnss3 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxi6 \
+    libxrandr2 \
+    libxss1 \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    fonts-liberation \
+    chromium \
+    chromium-driver \
+    --no-install-recommends && apt-get clean
 
-# ChromeDriver 실행 파일 복사
-COPY ./bin/chromedriver /app/bin/chromedriver
-RUN chmod +x /app/bin/chromedriver
-
+# Set Chrome environment variables
+ENV CHROME_BIN=/usr/bin/chromium
+ENV CHROMEDRIVER_PATH=/usr/bin/chromedriver
 
 # Copy project files
 COPY . .
