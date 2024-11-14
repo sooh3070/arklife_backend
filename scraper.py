@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.utils import set_driver_path
+
 
 from webdriver_manager.chrome import ChromeDriverManager
 import os
