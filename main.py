@@ -8,6 +8,11 @@ from scraper import get_crystal_cache  #스크래퍼 크리스탈 불러오기
 
 app = FastAPI()
 
+@app.get("/healthz")
+async def health_check():
+    return {"status": "healthy"}
+
+
 @app.get("/")
 async def root():
     return {"message": "Welcome to the ArkLife API"}
