@@ -22,8 +22,7 @@ def fetch_crystal_data():
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
-        # ChromeDriverManager의 경로를 클라우드 환경에 적합한 경로로 설정
-        driver_path = "/tmp/.wdm"  # 클라우드 환경에서도 쓰기가 가능한 경로
+        driver_path = "/app/.wdm"  # 애플리케이션 디렉토리로 변경
         os.makedirs(driver_path, exist_ok=True)
         
         driver = webdriver.Chrome(

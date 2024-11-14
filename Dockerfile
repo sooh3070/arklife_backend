@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
     libxi6 libxrandr2 libxss1 libatk-bridge2.0-0 libgtk-3-0 \
     chromium chromium-driver && apt-get clean
 
-# Ensure /tmp/.wdm exists and is writable
-RUN mkdir -p /tmp/.wdm && chmod -R 777 /tmp/.wdm
+# Ensure /app/.wdm exists and is writable
+RUN mkdir -p /app/.wdm && chmod -R 777 /app/.wdm
 
 # Copy project files
 COPY . .

@@ -1,0 +1,6 @@
+2024-11-14 14:49:50,173 [ERROR] Failed to fetch crystal data: [Errno 30] Read-only file system: '/app'
+2024-11-14 14:49:50,173 [INFO] data update: None
+2024-11-14 14:50:33,133 [WARNING] crystal_cache is None
+2024-11-14 14:50:33,136 [WARNING] crystal_cache is None
+2024-11-14 14:50:50,262 [WARNING] crystal_cache is None
+2024-11-14 14:50:50,264 [WARNING] crystal_cache is None
