@@ -1,6 +1,7 @@
 import time
 from threading import Thread
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
@@ -21,11 +22,11 @@ def fetch_crystal_data():
         # ChromeDriver 경로
         driver_path = "./bin/chromedriver"
 
-        # 직접 다운로드한 ChromeDriver 경로를 사용
-        driver = webdriver.Chrome(
-            executable_path=driver_path,  # 명시적으로 경로 전달
-            options=chrome_options
-        )
+        # Service 객체를 통해 ChromeDriver 경로 전달
+        service = Service(executable_path=driver_path)
+
+        # WebDriver 초기화
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
         # 목표 URL에 접속
         url = 'https://loatool.taeu.kr/lospi/'
